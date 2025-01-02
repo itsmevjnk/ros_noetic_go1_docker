@@ -1,0 +1,7 @@
+<launch>
+    <node name="driver_node" pkg="unitree_ros_io" type="driver_node" output="screen">
+        <remap from="cmd_vel" to="/cmd_vel" />
+        <remap from="imu" to="/imu" />
+        <remap from="odom" to="/odom" />
+    </node>
+</launch>
