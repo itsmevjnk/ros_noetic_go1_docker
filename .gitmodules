@@ -1,8 +1,8 @@
 [submodule "src/unitree_legged_sdk"]
 	path = src/unitree_legged_sdk
 	url = https://github.com/unitreerobotics/unitree_legged_sdk
-	branch = v3.8.0
+	# branch = v3.8.0
 [submodule "src/unitree_ros_to_real"]
 	path = src/unitree_ros_to_real
 	url = https://github.com/unitreerobotics/unitree_ros_to_real
-	branch = v3.8.0
+	# branch = v3.8.0
