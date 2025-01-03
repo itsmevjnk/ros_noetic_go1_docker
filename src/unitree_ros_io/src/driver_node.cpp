@@ -34,6 +34,10 @@ public:
     {
         high_udp.InitCmdData(high_cmd);
         low_udp.InitCmdData(low_cmd);
+
+        /* make sure robot stands up */
+        high_cmd.mode = 6;
+        high_cmd.gaitType = 1;
     }
 
     void highUdpSend()
@@ -86,12 +90,6 @@ void cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
     // printf("cmd_y_vel = %f\n", custom.high_cmd.velocity[1]);
     // printf("cmd_yaw_vel = %f\n", custom.high_cmd.yawSpeed);
 
-    unitree_legged_msgs::HighState high_state_ros;
-
-    high_state_ros = state2rosMsg(custom.high_state);
-
-    pub_high.publish(high_state_ros);
-
     // printf("cmdVelCallback ending!\t%ld\n\n", cmd_vel_count++);
 }
 
@@ -100,8 +98,6 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "twist_sub");
 
     ros::NodeHandle nh;
-
-    pub_high = nh.advertise<unitree_legged_msgs::HighState>("high_state", 1);
 
     sub_cmd_vel = nh.subscribe("cmd_vel", 1, cmdVelCallback);
 
