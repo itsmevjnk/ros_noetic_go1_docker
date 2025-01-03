@@ -1,4 +1,5 @@
 <launch>
+    <rosparam command="load" file="$(find unitree_ros_io)/bridge.yml" />
     <node name="driver_node" pkg="unitree_ros_io" type="driver_node" output="screen">
         <remap from="cmd_vel" to="/cmd_vel" />
         <remap from="imu" to="/imu" />

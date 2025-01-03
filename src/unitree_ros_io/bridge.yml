@@ -1,0 +1,4 @@
+topics:
+  - topic: /cmd_vel
+    type: geometry_msgs/msg/Twist
+    queue_size: 10
