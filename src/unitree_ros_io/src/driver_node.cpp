@@ -83,7 +83,7 @@ void cmdVelCallback(const geometry_msgs::Twist::ConstPtr &msg)
 
     custom.high_cmd = rosMsg2Cmd(msg);
 
-    ROS_INFO("vx=%f, vy=%f, rot=%f", custom.high_cmd.velocity[0], custom.high_cmd.velocity[1], custom.high_cmd.yawSpeed);
+    ROS_INFO("/cmd_vel received: vx=%f, vy=%f, rot=%f", custom.high_cmd.velocity[0], custom.high_cmd.velocity[1], custom.high_cmd.yawSpeed);
 
     // printf("cmd_x_vel = %f\n", custom.high_cmd.velocity[0]);
     // printf("cmd_y_vel = %f\n", custom.high_cmd.velocity[1]);
@@ -133,7 +133,7 @@ int main(int argc, char **argv)
         msg_imu.linear_acceleration.x = custom.high_state.imu.accelerometer[0];
         msg_imu.linear_acceleration.y = custom.high_state.imu.accelerometer[1];
         msg_imu.linear_acceleration.z = custom.high_state.imu.accelerometer[2];
-        ROS_INFO("publishing /imu");
+        // ROS_INFO("publishing /imu");
         pub_imu.publish(msg_imu);
 
         nav_msgs::Odometry msg_odom;
@@ -151,7 +151,7 @@ int main(int argc, char **argv)
         msg_odom.twist.twist.linear.x = custom.high_state.velocity[0];
         msg_odom.twist.twist.linear.y = custom.high_state.velocity[1];
         msg_odom.twist.twist.angular.z = custom.high_state.velocity[2];
-        ROS_INFO("publishing /odom");
+        // ROS_INFO("publishing /odom");
         pub_odom.publish(msg_odom);
         
 		geometry_msgs::TransformStamped odom_trans;
@@ -165,7 +165,7 @@ int main(int argc, char **argv)
 		odom_trans.transform.rotation.x = custom.high_state.imu.quaternion[1];
 		odom_trans.transform.rotation.y = custom.high_state.imu.quaternion[2];
 		odom_trans.transform.rotation.z = custom.high_state.imu.quaternion[3];
-        ROS_INFO("publishing odom -> base_link transform");
+        // ROS_INFO("publishing odom -> base_link transform");
 		odom_broadcaster.sendTransform(odom_trans);
 
         ros::spinOnce(); loop_rate.sleep();
