@@ -1,4 +1,11 @@
 topics:
   - topic: /cmd_vel
     type: geometry_msgs/msg/Twist
-    queue_size: 10
+    queue_size: 1
+  - topic: /imu
+    type: sensor_msgs/msg/Imu
+  - topic: /odom
+    type: nav_msgs/msg/Odometry
+  - topic: /tf
+    type: tf2_msgs/msg/TFMessage
+    
