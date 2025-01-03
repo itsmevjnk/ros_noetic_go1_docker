@@ -1,6 +1,13 @@
 <launch>
-    <rosparam command="load" file="$(find unitree_ros_io)/bridge.yml" />
+    <arg name="load_bridge_cfg" default="$(optenv LOAD_BRIDGE_CFG false)" />
+    <rosparam command="load" file="$(find unitree_ros_io)/bridge.yml" if="$(arg load_bridge_cfg)" />
+
+    <arg name="low_addr" default="$(optenv LOW_ADDR 192.168.123.10)" />
+    <arg name="high_addr" default="$(optenv HIGH_ADDR 192.168.12.1)" />
+
     <node name="driver_node" pkg="unitree_ros_io" type="driver_node" output="screen">
+        <param name="low_addr" value="$(arg low_addr)" />
+        <param name="high_addr" value="$(arg high_addr)" />
         <remap from="cmd_vel" to="/cmd_vel" />
         <remap from="imu" to="/imu" />
         <remap from="odom" to="/odom" />
